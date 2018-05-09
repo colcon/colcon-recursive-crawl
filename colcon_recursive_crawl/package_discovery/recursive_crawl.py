@@ -6,7 +6,7 @@ import os
 from colcon_core.package_discovery import logger
 from colcon_core.package_discovery import PackageDiscoveryExtensionPoint
 from colcon_core.package_identification import identify
-from colcon_core.package_identification import SkipLocationException
+from colcon_core.package_identification import IgnoreLocationException
 from colcon_core.plugin_system import satisfies_version
 
 
@@ -62,7 +62,7 @@ class RecursiveDiscoveryExtension(PackageDiscoveryExtensionPoint):
 
                 try:
                     result = identify(identification_extensions, real_dirpath)
-                except SkipLocationException:
+                except IgnoreLocationException:
                     del dirnames[:]
                     continue
                 if result:
