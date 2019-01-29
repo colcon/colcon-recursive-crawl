@@ -1,3 +1,13 @@
+apache
+colcon
+descs
+iterdir
+nargs
 noqa
-pragma
+pathlib
+plugin
+pytest
 recrawling
+scspell
+setuptools
+thomas
