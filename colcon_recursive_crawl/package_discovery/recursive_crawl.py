@@ -61,7 +61,7 @@ class RecursiveDiscoveryExtension(PackageDiscoveryExtensionPoint):
                 visited_paths.add(real_dirpath)
 
                 try:
-                    result = identify(identification_extensions, real_dirpath)
+                    result = identify(identification_extensions, dirpath)
                 except IgnoreLocationException:
                     del dirnames[:]
                     continue
