@@ -1,8 +1,10 @@
-# Copyright 2016-2018 Dirk Thomas
+# Copyright 2016-2020 Dirk Thomas
 # Licensed under the Apache License, Version 2.0
 
 import os
 
+from colcon_core.argument_default import is_default_value
+from colcon_core.argument_default import wrap_default_value
 from colcon_core.package_discovery import logger
 from colcon_core.package_discovery import PackageDiscoveryExtensionPoint
 from colcon_core.package_identification import identify
@@ -30,12 +32,13 @@ class RecursiveDiscoveryExtension(PackageDiscoveryExtensionPoint):
             '--base-paths',
             nargs='*',
             metavar='PATH',
-            default='.' if with_default else None,
+            default=wrap_default_value(['.']) if with_default else None,
             help='The base paths to recursively crawl for packages' +
                  (' (default: .)' if with_default else ''))
 
     def has_parameters(self, *, args):  # noqa: D102
-        return bool(args.base_paths)
+        return not is_default_value(args.base_paths) and \
+            bool(args.base_paths)
 
     def discover(self, *, args, identification_extensions):  # noqa: D102
         if args.base_paths is None:
