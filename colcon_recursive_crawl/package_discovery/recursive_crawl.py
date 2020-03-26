@@ -44,6 +44,10 @@ class RecursiveDiscoveryExtension(PackageDiscoveryExtensionPoint):
         if args.base_paths is None:
             return set()
 
+        if isinstance(args.base_paths, str):
+            raise ValueError('Base paths should be a sequence of strings, '
+                             'not a string')
+
         logger.info(
             'Crawling recursively for packages in %s',
             ', '.join([
@@ -52,6 +56,7 @@ class RecursiveDiscoveryExtension(PackageDiscoveryExtensionPoint):
 
         visited_paths = set()
         descs = set()
+
         for base_path in args.base_paths:
             for dirpath, dirnames, filenames in os.walk(
                 base_path, followlinks=True,
