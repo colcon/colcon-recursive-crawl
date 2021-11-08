@@ -5,7 +5,7 @@ import os
 
 from colcon_core.argument_default import is_default_value
 from colcon_core.argument_default import wrap_default_value
-from colcon_core.package_discovery import expand_wildcards
+from colcon_core.package_discovery import expand_dir_wildcards
 from colcon_core.package_discovery import logger
 from colcon_core.package_discovery import PackageDiscoveryExtensionPoint
 from colcon_core.package_identification import identify
@@ -47,7 +47,7 @@ class RecursiveDiscoveryExtension(PackageDiscoveryExtensionPoint):
 
         # manually check for wildcards and expand them in case
         # the values were not provided through the shell
-        expand_wildcards(args.base_paths)
+        expand_dir_wildcards(args.base_paths)
 
         logger.info(
             'Crawling recursively for packages in %s',
