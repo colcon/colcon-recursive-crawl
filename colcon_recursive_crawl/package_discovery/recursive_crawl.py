@@ -5,6 +5,7 @@ import os
 
 from colcon_core.argument_default import is_default_value
 from colcon_core.argument_default import wrap_default_value
+from colcon_core.argument_type import get_cwd_path_resolver
 from colcon_core.package_discovery import expand_dir_wildcards
 from colcon_core.package_discovery import logger
 from colcon_core.package_discovery import PackageDiscoveryExtensionPoint
@@ -34,6 +35,7 @@ class RecursiveDiscoveryExtension(PackageDiscoveryExtensionPoint):
             nargs='*',
             metavar='PATH',
             default=wrap_default_value(['.']) if with_default else None,
+            type=get_cwd_path_resolver(),
             help='The base paths to recursively crawl for packages' +
                  (' (default: .)' if with_default else ''))
 
