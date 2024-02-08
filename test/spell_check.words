@@ -2,10 +2,12 @@ apache
 colcon
 descs
 iterdir
+linter
 nargs
 noqa
 pathlib
 plugin
+pydocstyle
 pytest
 recrawling
 scspell
